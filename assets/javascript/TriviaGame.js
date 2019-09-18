@@ -1,13 +1,12 @@
-// $(document).ready(function){
-
-    $('#start').on(click, function () {
-        $('#start').remove();
-        game.loadQuestion();
-    })
+$(document).ready(function (){
+     $('#start').on('click', function () {
+         $('#start').remove();
+    //     game.loadQuestion();
+     });
 
     $(document).on('click', 'answer-button', function (e) {
         game.clicked(e);
-    })
+    });
 
     var questions = [{
         question: "..........",
@@ -19,7 +18,7 @@
     {}
     ];
 
-
+console.log(questions)
     var game = {
         question: questions,
         currentQuestion: 0,
@@ -66,4 +65,5 @@
         reset: function () {
 
         }
-    }
+    };
+});
