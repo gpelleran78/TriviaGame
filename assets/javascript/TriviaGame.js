@@ -12,8 +12,6 @@ $(document).ready(function () {
         game.reset();
     });
 
-
-
     var questions = [{
         question: "World War 2 ended with the unconditional surrender of the Axis powers on which day?",
         answers: ["8 May 1945", "8 March 1946", "8 December 1945", "8 May 1946"],
@@ -95,6 +93,7 @@ $(document).ready(function () {
             }
 
         },
+
         loadQuestion: function () {
             timer = setInterval(game.countdown, 1000);
             $('#subwrapper').html("<h2> TIME REMAINING <span id= 'counter'>30</span> Seconds</h2>");
@@ -105,25 +104,28 @@ $(document).ready(function () {
 
             }
         },
-        nextQuestion: function () {
+
+        nextQuestion: function() {
             game.counter - 30;
             $("#counter").html(game.counter);
             game.currentQuestion++;
             game.loadQuestion();
         },
-        timeUp: function () {
+
+        timeUp: function() {
             clearInterval(timer);
             game.unanswered++;
             $('#subwrapper').html('<h2>OUT OF TIME!</h2>')
-            $('subwrapper').append('<h3>The Correct Answer Was: ' + questions[game.currentQuestion].correctAnswer + '</h3>');
-            if (game.currentQuestion == questions.length - 1) {
-                setTimeout(game.result, 3 * 1000);
+            $('#subwrapper').append('<h3>The Correct Answer Was: '+questions[game.currentQuestion].correctAnswer+'</h3>');
+            if (game.currentQuestion==questions.length-1) {
+                setTimeout(game.result, 3*1000);
             }
             else {
-                setTimeout(game.nextQuestion, 3 * 1000);
+                setTimeout(game.nextQuestion, 3*1000); //need to fix this loop
             }
         },
-        result: function () {
+
+        result: function() {
             clearInterval(timer);
             $('#subwrapper').html("<h2>ALL DONE</h2>");
             $('#subwrapper').append("<h3>Correct: " + game.correct + "</h3>");
@@ -133,7 +135,7 @@ $(document).ready(function () {
 
 
         },
-        clicked: function (e) {
+        clicked: function(e) {
             clearInterval(timer);
             if ($(e.target).data("name") == questions[game.currentQuestion].correctAnswer) {
                 game.answeredCorrectly();
@@ -141,9 +143,9 @@ $(document).ready(function () {
             else {
                 game.answeredIncorrectly();
             }
-
         },
-        answeredCorrectly: function () {
+
+        answeredCorrectly: function() {
             console.log("you are correct")
             clearInterval(timer);
             game.correct++;
@@ -155,20 +157,22 @@ $(document).ready(function () {
                 setTimeout(game.nextQuestion, 3 * 1000);
             }
         },
-        answeredIncorrectly: function () {
+
+        answeredIncorrectly: function() {
             console.log("Wrong Answer")
             clearInterval(timer);
             game.incorrect++;
             $('#subwrapper').html('<h2>YOU GOT IT WRONG!</H2>');
-            $('subwrapper').append('<h3>The Correct Answer Was: ' + questions[game.currentQuestion].correctAnswer + '</h3>');
-            if (game.currentQuestion == questions.length - 1) {
+            $('#subwrapper').append('<h3>The Correct Answer Was: '+questions[game.currentQuestion].correctAnswer+'</h3>');
+            if (game.currentQuestion==questions.length-1) {
                 setTimeout(game.result, 3 * 1000);
             }
             else {
                 setTimeout(game.nextQuestion, 3 * 1000);
             }
         },
-        reset: function () {
+        
+        reset: function() {
             game.currentQuestion = 0;
             game.counter = 0;
             game.correct = 0;
