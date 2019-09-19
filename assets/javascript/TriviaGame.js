@@ -8,71 +8,71 @@ $(document).ready(function () {
         game.clicked(e);
     });
 
+    $(document).on('click','#reset', function(){
+        game.reset();
+    });
+
+
+
     var questions = [{
-        question: "",
-        answers: ["", "", "", ""],
-        correctAnswer: "",
+        question: "World War 2 ended with the unconditional surrender of the Axis powers on which day?",
+        answers: ["8 May 1945", "8 March 1946", "8 December 1945", "8 May 1946"],
+        correctAnswer: "8 May 1945",
         image: ".............."
     },
     //repeat above format for each arrey of questions
     {
-        question: "",
-        answers: ["", "", "", ""],
-        correctAnswer: "",
+        question: "What was the name of the key battle in 1066 during the Norman invasion of England?",
+        answers: ["Battle of Somme", "Battle of Trafalgar", "Battle of Antietam", "Battle of Hastings"],
+        correctAnswer: "Battle of Hastings",
         image: ".............."
     },
     {
-        question: "",
-        answers: ["", "", "", ""],
-        correctAnswer: "",
+        question: "The city of Pompeii and many villages in the surrounding area were destroyed in the eruption of which volcano?",
+        answers: ["Mount Krakatoa", "Mount St. Helens", "Mount Etna", "Mount Vesuvius"],
+        correctAnswer: "Mount Vesuvius",
         image: ".............."
     },
     {
-        question: "",
-        answers: ["", "", "", ""],
-        correctAnswer: "",
+        question: "What was the first dynasty in China",
+        answers: ["Xia dynasty", "Han dynasty", "Zhou dynasty", "Qin dynasty"],
+        correctAnswer: "Xia dynasty",
         image: ".............."
     },
     {
-        question: "",
-        answers: ["", "", "", ""],
-        correctAnswer: "",
+        question: "The death of what person triggered World War 1?",
+        answers: ["Archduke Franz Ferdinand", "Kaiser Wilhelm", "Rudolf, Crown Prince of Austria", "Tsar Nicholas II"],
+        correctAnswer: "Archduke Franz Ferdinand",
         image: ".............."
     },
     {
-        question: "",
-        answers: ["", "", "", ""],
-        correctAnswer: "",
+        question: "The Russians sent a dog Laika into space, the Americans sent a chimp into space in 1961 (it survived). What was the name of the chimp?",
+        answers: ["Ham", "Mon", "Der", "Loka"],
+        correctAnswer: "Ham",
         image: ".............."
     },
     {
-        question: "",
-        answers: ["", "", "", ""],
-        correctAnswer: "",
+        question: "What was the name of the South Amereican surgeon who carried out the first heart transplant in 1967?",
+        answers: ["Harvey Cushing", "Michael DeBakey", "Denton Cooley", "Christiaan Barnard"],
+        correctAnswer: "Christiaan Barnard",
         image: ".............."
     },
     {
-        question: "",
-        answers: ["", "", "", ""],
-        correctAnswer: "",
+        question: "What was the codename for the development of the atom bomb?",
+        answers: ["Fatboy Project", "Harlem Project", "Manhattan Project", "Littleman Project"],
+        correctAnswer: "Manhattan Project",
         image: ".............."
     },
     {
-        question: "",
-        answers: ["", "", "", ""],
-        correctAnswer: "",
+        question: "What was Ceaser's first name?",
+        answers: ["Antoninus", "Claudius", "Julius", "Justinian"],
+        correctAnswer: "Julius",
         image: ".............."
     },
     {
-        question: "",
-        answers: ["", "", "", ""],
-        correctAnswer: "",
-        image: ".............."
-    },
-    {
-        question: "",
-        answers: ["", "", "", ""],
-        correctAnswer: "",
+        question: "What was the first war to be sanctioned by the United States in 1950?",
+        answers: ["Korean War", "Vietnam War", "Crimean War", "World War II"],
+        correctAnswer: "Korean War",
         image: ".............."
     },
     ];
@@ -82,8 +82,8 @@ $(document).ready(function () {
         questions: questions,
         currentQuestion: 0,
         counter: 30,
-        courrect: 0,
-        incourrect: 0,
+        correct: 0,
+        incorrect: 0,
         unanswered: 0,
 
         countdown: function () {
@@ -97,7 +97,8 @@ $(document).ready(function () {
         },
         loadQuestion: function () {
             timer = setInterval(game.countdown, 1000);
-            $('#subwrapper').html('<h2>' + questions[game.currentQuestion].question + '</h2>');
+            $('#subwrapper').html("<h2> TIME REMAINING <span id= 'counter'>30</span> Seconds</h2>");
+            $('#subwrapper').append('<h2>' + questions[game.currentQuestion].question + '</h2>');
             for (var i = 0; i < questions[game.currentQuestion].answers.length; i++) {
                 $('#subwrapper').append('<button class= "answer-button" id="button- ' + i + '" data-name= "' +
                     questions[game.currentQuestion].answers[i] + '">' + questions[game.currentQuestion].answers[i] + '</button>');
@@ -127,7 +128,8 @@ $(document).ready(function () {
             $('#subwrapper').html("<h2>ALL DONE</h2>");
             $('#subwrapper').append("<h3>Correct: " + game.correct + "</h3>");
             $('#subwrapper').append("<h3>Incorrect: " + game.incorrect + "</h3>");
-            $('#subwrapper').append("<h3>Unansered: " + game.unanswered + "</h3>");
+            $('#subwrapper').append("<h3>Unanswered: " + game.unanswered + "</h3>");
+            $('#subwrapper').append("<button id='reset'>RESET</button>");
 
 
         },
@@ -167,7 +169,12 @@ $(document).ready(function () {
             }
         },
         reset: function () {
-
+            game.currentQuestion = 0;
+            game.counter = 0;
+            game.correct = 0;
+            game.incorrect = 0;
+            game.unanswered = 0;
+            game.loadQuestion();
         }
     };
 });
