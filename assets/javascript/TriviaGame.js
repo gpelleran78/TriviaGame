@@ -9,19 +9,72 @@ $(document).ready(function () {
     });
 
     var questions = [{
-        question: "What city were you born in",
-        answers: ["Alpena", "Flint", "Marquette"],
-        correctAnswer: "Alpena",
+        question: "",
+        answers: ["", "", "", ""],
+        correctAnswer: "",
         image: ".............."
     },
     //repeat above format for each arrey of questions
     {
-        question: "Where do you live now?",
-        answers: ["Alpena", "Flint", "Marquette", "Phoenix"],
-        correctAnswer: "Phoenix",
+        question: "",
+        answers: ["", "", "", ""],
+        correctAnswer: "",
         image: ".............."
     },
-    {}
+    {
+        question: "",
+        answers: ["", "", "", ""],
+        correctAnswer: "",
+        image: ".............."
+    },
+    {
+        question: "",
+        answers: ["", "", "", ""],
+        correctAnswer: "",
+        image: ".............."
+    },
+    {
+        question: "",
+        answers: ["", "", "", ""],
+        correctAnswer: "",
+        image: ".............."
+    },
+    {
+        question: "",
+        answers: ["", "", "", ""],
+        correctAnswer: "",
+        image: ".............."
+    },
+    {
+        question: "",
+        answers: ["", "", "", ""],
+        correctAnswer: "",
+        image: ".............."
+    },
+    {
+        question: "",
+        answers: ["", "", "", ""],
+        correctAnswer: "",
+        image: ".............."
+    },
+    {
+        question: "",
+        answers: ["", "", "", ""],
+        correctAnswer: "",
+        image: ".............."
+    },
+    {
+        question: "",
+        answers: ["", "", "", ""],
+        correctAnswer: "",
+        image: ".............."
+    },
+    {
+        question: "",
+        answers: ["", "", "", ""],
+        correctAnswer: "",
+        image: ".............."
+    },
     ];
 
     // console.log(questions)
@@ -31,6 +84,7 @@ $(document).ready(function () {
         counter: 30,
         courrect: 0,
         incourrect: 0,
+        unanswered: 0,
 
         countdown: function () {
             game.counter--;
@@ -57,9 +111,24 @@ $(document).ready(function () {
             game.loadQuestion();
         },
         timeUp: function () {
-
+            clearInterval(timer);
+            game.unanswered++;
+            $('#subwrapper').html('<h2>OUT OF TIME!</h2>')
+            $('subwrapper').append('<h3>The Correct Answer Was: ' + questions[game.currentQuestion].correctAnswer + '</h3>');
+            if (game.currentQuestion == questions.length - 1) {
+                setTimeout(game.result, 3 * 1000);
+            }
+            else {
+                setTimeout(game.nextQuestion, 3 * 1000);
+            }
         },
         result: function () {
+            clearInterval(timer);
+            $('#subwrapper').html("<h2>ALL DONE</h2>");
+            $('#subwrapper').append("<h3>Correct: " + game.correct + "</h3>");
+            $('#subwrapper').append("<h3>Incorrect: " + game.incorrect + "</h3>");
+            $('#subwrapper').append("<h3>Unansered: " + game.unanswered + "</h3>");
+
 
         },
         clicked: function (e) {
@@ -89,6 +158,7 @@ $(document).ready(function () {
             clearInterval(timer);
             game.incorrect++;
             $('#subwrapper').html('<h2>YOU GOT IT WRONG!</H2>');
+            $('subwrapper').append('<h3>The Correct Answer Was: ' + questions[game.currentQuestion].correctAnswer + '</h3>');
             if (game.currentQuestion == questions.length - 1) {
                 setTimeout(game.result, 3 * 1000);
             }
