@@ -1,0 +1,13 @@
+/* body{
+    background-image: url(../images/world-history.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+}; */
+
+#wrapper{
+    font-size: 300%;
+    text-align: center;
+    color: black;
+};

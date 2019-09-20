@@ -4,6 +4,7 @@ $(document).ready(function () {
         game.loadQuestion();
     });
 
+    //lets user know if they are correct or incorrect
     $(document).on('click', '.answer-button', function (e) {
         game.clicked(e);
     });
@@ -86,10 +87,11 @@ $(document).ready(function () {
 
         countdown: function () {
             game.counter--;
+            //game counter count down and post times up
             $('#counter').html(game.counter);
             if (game.counter <= 0) {
-                console.log("Time Up!!!");
                 game.timeUp();
+                console.log("Time Up!!!");
             }
 
         },
@@ -101,12 +103,11 @@ $(document).ready(function () {
             for (var i = 0; i < questions[game.currentQuestion].answers.length; i++) {
                 $('#subwrapper').append('<button class= "answer-button" id="button- ' + i + '" data-name= "' +
                     questions[game.currentQuestion].answers[i] + '">' + questions[game.currentQuestion].answers[i] + '</button>');
-
-            }
+            }//[i] stores the arrey number to store the correct answer in "data-name="
         },
 
         nextQuestion: function() {
-            game.counter - 30;
+            game.counter = 30;
             $("#counter").html(game.counter);
             game.currentQuestion++;
             game.loadQuestion();
@@ -174,7 +175,7 @@ $(document).ready(function () {
         
         reset: function() {
             game.currentQuestion = 0;
-            game.counter = 0;
+            game.counter = 30;
             game.correct = 0;
             game.incorrect = 0;
             game.unanswered = 0;
