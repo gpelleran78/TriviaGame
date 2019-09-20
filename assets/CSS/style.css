@@ -1,13 +1,25 @@
-/* body{
+#background{
     background-image: url(../images/world-history.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
-}; */
+}
 
 #wrapper{
+    font-weight: bold;
     font-size: 300%;
     text-align: center;
     color: black;
-};
+}
+
+#subwrapper{
+    font-weight: bold;
+    font-size: 125%;
+    text-align: center;
+    color: black;
+}
+
+button{
+    font-size: 75%;
+}
