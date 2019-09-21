@@ -17,7 +17,7 @@ $(document).ready(function () {
         question: "World War 2 ended with the unconditional surrender of the Axis powers on which day?",
         answers: ["8 May 1945", "8 March 1946", "8 December 1945", "8 May 1946"],
         correctAnswer: "8 May 1945",
-        image: ".............."
+        imageUrl: ".................."
     },
     //repeat above format for each arrey of questions
     {
